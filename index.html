@@ -40,6 +40,18 @@
             }
         }
 
+        .enemy_hit_animation{
+            animation: enemy_hit_kf 1s ease-in-out 1 forwards;
+            
+            
+            
+        }
+
+        @keyframes enemy_hit_kf {
+            to{
+                transform:scale(2);
+            }
+        }
         div {
             width: 20px;
             height: 20px;
@@ -58,6 +70,7 @@
         <!-- <g x="110" y="120"> -->
         <g id="theCircle">
             <circle r="20" stroke="white" fill="none" />
+            
         </g>
         <!-- </g> -->
         <g id="missiles">
@@ -414,9 +427,11 @@
                            let tempX = enemy.x;
                            let tempY = enemy.y;
                            enemy.element.classList.remove("enemy_animation");
+                           enemy.element.querySelector("circle").classList.add("enemy_hit_animation");
                            enemy.element.x= tempX;
                            enemy.element.y= tempY;
                            enemy.element.setAttribute("transform",`translate(${enemy.element.x},${enemy.element.y})`) 
+                           
                             // console.log("***************************")
                             // console.log("*          HIT            *")
                             // console.log("***************************")
