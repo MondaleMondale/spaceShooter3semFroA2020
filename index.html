@@ -7,15 +7,26 @@
     <title>Document</title>
 
     <style>
+        * {
+
+            margin: 0;
+            padding: 0;
+        }
+
         svg {
+
             background: #AA3A3B;
-            border: .5px solid grey;
+
+            margin-left: 30px;
+            margin-right: 30px;
+            margin-top: 30px;
+            /* border: .5px solid grey; */
         }
 
 
-        /* .enemy_animation {
-
-            animation: enemy_kf .5s ease-in 1 forwards;
+        .enemy_animation {
+            /* transform-box: fill-box; */
+            animation: enemy_kf 5s ease-in 5 forwards;
         }
 
         @keyframes enemy_kf {
@@ -23,11 +34,11 @@
 
             to {
 
-                transform: translate(100px, 100px);
-           
-           
+                transform: translate(200px, 100px);
+
+
             }
-        } */
+        }
 
         div {
             width: 20px;
@@ -41,11 +52,11 @@
 <body>
 
     <!-- <div class="missile_animation"></div> -->
-    <svg viewBox="0 0 200 200">
+    <svg id="theSvg">
         <!-- <g id="gun_ship"> -->
         <!-- <polygon points="0,0 -15,50 15,50" fill="none" fill stroke="white" stroke-width=".2" /> -->
         <!-- <g x="110" y="120"> -->
-        <g id="theCircle" >
+        <g id="theCircle">
             <circle r="20" stroke="white" fill="none" />
         </g>
         <!-- </g> -->
@@ -251,6 +262,13 @@
         let missileNum = -1;
         let missileArray = [];
         let currentMissile
+        const theSVGWidth = 200;
+        const theSVGHeight = 200;
+        const theSvgPointer = document.querySelector("#theSvg");
+        // const thisSvgOffsetX = theSvgPointer.getBoundingClientRect().x;
+        // const thisSvgOffsetY = theSvgPointer.getBoundingClientRect().y;
+
+        theSvgPointer.setAttribute("viewBox", `0 0 ${theSVGWidth} ${theSVGHeight}`);
 
         const gunShip = {
 
@@ -264,8 +282,8 @@
             speedX: -1,
             speedY: -1,
             element: document.querySelector("#theCircle"),
-            hit :false
-       
+            hit: false
+
 
 
         }
@@ -326,12 +344,8 @@
             }
 
         }
-        // triangle.setAttribute("y","175");
-        // gunShip.element.setAttribute("transform", "translate(100,100)");
 
-        //  document.querySelector("#theCircle").addEventListener('animationiteration',animationIteration);
-        //   function animationIteration(e){console.log("ANIMATION EVENT",e)}
-        // document.querySelector("#theCircle").classList.add("enemy_animation");
+        enemy.element.classList.add("enemy_animation");
 
 
         let currentMissiles = [];
@@ -347,19 +361,25 @@
 
                 }
 
-               // console.log(document.querySelector("#theCircle").transform);
-                // console.log(document.querySelector("#theCircle").getAnimations());
-                //    console.log(document.querySelector("#theCircle"));
-                if (!enemy.hit){
-                    enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
-                    console.log(checkOutOfbounds(enemy));
-                    if (checkOutOfbounds(enemy)){
-                        enemy.x =0;
-                        enemy.y =0;
+                enemy.x = Math.round(((enemy.element.getBoundingClientRect().x + enemy.element.getBoundingClientRect().width / 2 - theSvgPointer.getBoundingClientRect().x) / ((theSvgPointer.getBoundingClientRect().width) / theSVGWidth)));
+                enemy.y = Math.round(((enemy.element.getBoundingClientRect().y + enemy.element.getBoundingClientRect().height / 2 - theSvgPointer.getBoundingClientRect().y) / ((theSvgPointer.getBoundingClientRect().height) / theSVGHeight)));
+
+
+
+                console.log("enemyX", enemy.x);
+                console.log("enemyY", enemy.y);
+
+
+                if (!enemy.hit) {
+                    //    enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
+                    // console.log(checkOutOfbounds(enemy));
+                    if (checkOutOfbounds(enemy)) {
+                        enemy.x = 0;
+                        enemy.y = 0;
 
                     }
                 }
-             
+
                 missileArray.forEach(theMissile => {
 
                     if (!theMissile.isFired) {
@@ -384,27 +404,34 @@
                     } else {
                         theMissile.element.setAttribute("transform", `translate(${theMissile.x -= theMissile.speedX},${theMissile.y -= theMissile.speedY})`);
                     }
-                    if  (theMissile.isFired){
-                    
-                        if (checkPythagoras(theMissile,enemy)<enemy.r){
+                    if (theMissile.isFired) {
+
+                        if (checkPythagoras(theMissile, enemy) < enemy.r) {
                             enemy.hit = true;
                             theMissile.speedX = 0;
                             theMissile.speedY = 0;
+
+                           let tempX = enemy.x;
+                           let tempY = enemy.y;
+                           enemy.element.classList.remove("enemy_animation");
+                           enemy.element.x= tempX;
+                           enemy.element.y= tempY;
+                           enemy.element.setAttribute("transform",`translate(${enemy.element.x},${enemy.element.y})`) 
                             // console.log("***************************")
                             // console.log("*          HIT            *")
                             // console.log("***************************")
                         }
-                    // console.log();
+                        // console.log();
                     }
                 })
-                
 
 
-                
+
+
             }
-          requestAnimationFrame(theGameLoop)
+            requestAnimationFrame(theGameLoop)
             // setTimeout(theGameLoop ,500);
-            
+
         }
 
         fillGunShipWithMissiles();
@@ -415,14 +442,14 @@
 
         }
         // console.log(checkPythagoras({x:10,y:10},{x:20,y:20}));
-        function checkPythagoras(p1,p2){
-            let distance = Math.sqrt(Math.pow(p1.x-p2.x,2)+ Math.pow(p1.y-p2.y,2));
+        function checkPythagoras(p1, p2) {
+            let distance = Math.sqrt(Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2));
 
             return distance;
         }
-        function checkOutOfbounds(elm){
+        function checkOutOfbounds(elm) {
             let returnVal = false;
-            if (elm.x <= 0 || elm.x > 200 || elm.y <= 0 || elm.y > 200){
+            if (elm.x <= 0 || elm.x > 200 || elm.y <= 0 || elm.y > 200) {
                 returnVal = true;
 
             }
