@@ -352,6 +352,7 @@
                 //    console.log(document.querySelector("#theCircle"));
                 if (!enemy.hit){
                     enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
+                    console.log(checkOutOfbounds(enemy));
                 }
              
                 missileArray.forEach(theMissile => {
@@ -379,15 +380,14 @@
                         theMissile.element.setAttribute("transform", `translate(${theMissile.x -= theMissile.speedX},${theMissile.y -= theMissile.speedY})`);
                     }
                     if  (theMissile.isFired){
-                        // console.log("theMissile y", theMissile.y);
-                        // console.log("enemy y", enemy.y);
-                     //  console.log("checkPythagoras",checkPythagoras({x:theMissile.x,y:theMissile.y},{x:enemy.x,y:enemy.y}));
-                        if (checkPythagoras({x:theMissile.x,y:theMissile.y},{x:enemy.x,y:enemy.y})<enemy.r){
-                            enemy.speedX=0;
-                            enemy.speedY=0;
-                            console.log("***************************")
-                            console.log("*          HIT            *")
-                            console.log("***************************")
+                    
+                        if (checkPythagoras(theMissile,enemy)<enemy.r){
+                            enemy.hit = true;
+                            theMissile.speedX = 0;
+                            theMissile.speedY = 0;
+                            // console.log("***************************")
+                            // console.log("*          HIT            *")
+                            // console.log("***************************")
                         }
                     // console.log();
                     }
@@ -409,13 +409,21 @@
 
 
         }
-        console.log(checkPythagoras({x:10,y:10},{x:20,y:20}));
+        // console.log(checkPythagoras({x:10,y:10},{x:20,y:20}));
         function checkPythagoras(p1,p2){
             let distance = Math.sqrt(Math.pow(p1.x-p2.x,2)+ Math.pow(p1.y-p2.y,2));
 
             return distance;
         }
+        function checkOutOfbounds(elm){
+            let returnVal = false;
+            if (elm.x <= 0 || elm.x > 200 || elm.y <= 0 || elm.y > 200){
+                returnVal = true;
 
+            }
+            return returnVal;
+
+        }
     </script>
 </body>
 
