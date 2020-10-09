@@ -307,13 +307,16 @@
             missile.setAttribute("stroke", "white");
             missile.setAttribute("stroke-width", ".5");
             missile.setAttribute("fill", "none");
-            missile.setAttribute("transform", `translate(${Number(missile.getAttribute("x")) + 100},${Number(missile.getAttribute("y")) + 150})`);
+            // the positions in the SVG markup doesn't work but i use them and apply them - should be fixed
+           let tempX = Number(missile.getAttribute("x")) + 100;
+           let tempY = Number(missile.getAttribute("y")) + 150;
+            missile.setAttribute("transform", `translate(${tempX},${tempY})`);
             // console.log("missile.getAttribute({\"x\")", missile.getAttribute("x"));
             // missile.setAttribute("x","32px");
             missileArray.push({
                 element: missile,
-                x: Number(missile.getAttribute("x")) + 100,
-                y: Number(missile.getAttribute("y")) + 150,
+                x: tempX,
+                y: tempY,
                 isFired: false,
                 speedX: 0,
                 speedY: 0
