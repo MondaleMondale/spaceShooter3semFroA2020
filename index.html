@@ -353,6 +353,11 @@
                 if (!enemy.hit){
                     enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
                     console.log(checkOutOfbounds(enemy));
+                    if (checkOutOfbounds(enemy)){
+                        enemy.x =0;
+                        enemy.y =0;
+
+                    }
                 }
              
                 missileArray.forEach(theMissile => {
