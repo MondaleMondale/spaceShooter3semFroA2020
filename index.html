@@ -40,7 +40,7 @@
 
 <body>
 
-    <div class="missile_animation"></div>
+    <!-- <div class="missile_animation"></div> -->
     <svg viewBox="0 0 200 200">
         <!-- <g id="gun_ship"> -->
         <!-- <polygon points="0,0 -15,50 15,50" fill="none" fill stroke="white" stroke-width=".2" /> -->
@@ -260,10 +260,12 @@
         const enemy = {
             x: 0,
             y: 0,
+            r: 20,
             speedX: -1,
             speedY: -1,
             element: document.querySelector("#theCircle"),
             hit :false
+       
 
 
         }
@@ -377,8 +379,17 @@
                         theMissile.element.setAttribute("transform", `translate(${theMissile.x -= theMissile.speedX},${theMissile.y -= theMissile.speedY})`);
                     }
                     if  (theMissile.isFired){
-                    console.log(theMissile.y);
-                    console.log();
+                        // console.log("theMissile y", theMissile.y);
+                        // console.log("enemy y", enemy.y);
+                     //  console.log("checkPythagoras",checkPythagoras({x:theMissile.x,y:theMissile.y},{x:enemy.x,y:enemy.y}));
+                        if (checkPythagoras({x:theMissile.x,y:theMissile.y},{x:enemy.x,y:enemy.y})<enemy.r){
+                            enemy.speedX=0;
+                            enemy.speedY=0;
+                            console.log("***************************")
+                            console.log("*          HIT            *")
+                            console.log("***************************")
+                        }
+                    // console.log();
                     }
                 })
                 
@@ -386,8 +397,8 @@
 
                 
             }
-           requestAnimationFrame(theGameLoop)
-        //    setTimeout(theGameLoop ,1000);
+          requestAnimationFrame(theGameLoop)
+            // setTimeout(theGameLoop ,500);
             
         }
 
@@ -398,7 +409,12 @@
 
 
         }
+        console.log(checkPythagoras({x:10,y:10},{x:20,y:20}));
+        function checkPythagoras(p1,p2){
+            let distance = Math.sqrt(Math.pow(p1.x-p2.x,2)+ Math.pow(p1.y-p2.y,2));
 
+            return distance;
+        }
 
     </script>
 </body>
