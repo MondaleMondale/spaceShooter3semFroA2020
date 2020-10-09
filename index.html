@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <style>
+        svg {
+            background: #AA3A3B;
+            border: .5px solid grey;
+        }
+
+
+        /* .enemy_animation {
+
+            animation: enemy_kf .5s ease-in 1 forwards;
+        }
+
+        @keyframes enemy_kf {
+
+
+            to {
+
+                transform: translate(100px, 100px);
+           
+           
+            }
+        } */
+
+        div {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            position: absolute;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="missile_animation"></div>
+    <svg viewBox="0 0 200 200">
+        <!-- <g id="gun_ship"> -->
+        <!-- <polygon points="0,0 -15,50 15,50" fill="none" fill stroke="white" stroke-width=".2" /> -->
+        <!-- <g x="110" y="120"> -->
+        <g id="theCircle" >
+            <circle r="20" stroke="white" fill="none" />
+        </g>
+        <!-- </g> -->
+        <g id="missiles">
+            <!-- <g id="missile_mother">
+                    <polygon id="missile_mother" points="0,0 -1.5,5 1.5,5" fill="none" stroke="white"
+                        stroke-width=".2" />
+                </g> -->
+
+            <g class="missile" x="0" y="0">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-1.5" y="5">
+                <polygon />
+            </g>
+            <g class="missile" x="1.5" y="5">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-3" y="10">
+                <polygon />
+            </g>
+            <g class="missile" x="0" y="10">
+                <polygon />
+            </g>
+            <g class="missile" x="3" y="10">
+                <polygon />
+            </g>
+
+
+            <g class="missile" x="-4.5" y="15">
+                <polygon />
+            </g>
+            <g class="missile" x="-1.5" y="15">
+                <polygon />
+            </g>
+            <g class="missile" x="1.5" y="15">
+                <polygon />
+            </g>
+            <g class="missile" x="4.5" y="15">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-6" y="20">
+                <polygon />
+            </g>
+            <g class="missile" x="-3" y="20">
+                <polygon />
+            </g>
+            <g class="missile" x="0" y="20">
+                <polygon />
+            </g>
+            <g class="missile" x="3" y="20">
+                <polygon />
+            </g>
+            <g class="missile" x="6" y="20">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-7.5" y="25">
+                <polygon />
+            </g>
+            <g class="missile" x="-4.5" y="25">
+                <polygon />
+            </g>
+            <g class="missile" x="-1.5" y="25">
+                <polygon />
+            </g>
+            <g class="missile" x="1.5" y="25">
+                <polygon />
+            </g>
+            <g class="missile" x="4.5" y="25">
+                <polygon />
+            </g>
+            <g class="missile" x="7.5" y="25">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-9" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="-6" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="-3" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="0" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="3" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="6" y="30">
+                <polygon />
+            </g>
+            <g class="missile" x="9" y="30">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-10.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="-7.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="-4.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="-1.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="1.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="4.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="7.5" y="35">
+                <polygon />
+            </g>
+            <g class="missile" x="10.5" y="35">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-12" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="-9" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="-6" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="-3" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="0" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="3" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="6" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="9" y="40">
+                <polygon />
+            </g>
+            <g class="missile" x="12" y="40">
+                <polygon />
+            </g>
+
+            <g class="missile" x="-13.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="-10.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="-7.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="-4.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="-1.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="1.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="4.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="7.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="10.5" y="45">
+                <polygon />
+            </g>
+            <g class="missile" x="13.5" y="45">
+                <polygon />
+            </g>
+        </g>
+        <!-- </g> -->
+
+
+
+        <!-- <use href="#missile" width="10" height="20"/> -->
+
+
+
+
+    </svg>
+
+
+
+    <script>
+        let stopFlag = false;
+        let theDirection = "none";
+        let fireAtWill = false;
+        let missileNum = -1;
+        let missileArray = [];
+        let currentMissile
+
+        const gunShip = {
+
+            speed: 4
+        }
+
+        const enemy = {
+            x: 0,
+            y: 0,
+            speedX: -1,
+            speedY: -1,
+            element: document.querySelector("#theCircle"),
+            hit :false
+
+
+        }
+
+        document.querySelectorAll(".missile").forEach((missile) => {
+            // console.log(missile);
+            missile.querySelector("polygon").setAttribute("points", "0,0 -1.5,5 1.5,5");
+            missile.setAttribute("stroke", "white");
+            missile.setAttribute("stroke-width", ".5");
+            missile.setAttribute("fill", "none");
+            missile.setAttribute("transform", `translate(${Number(missile.getAttribute("x")) + 100},${Number(missile.getAttribute("y")) + 150})`);
+            // console.log("missile.getAttribute({\"x\")", missile.getAttribute("x"));
+            // missile.setAttribute("x","32px");
+            missileArray.push({
+                element: missile,
+                x: Number(missile.getAttribute("x")) + 100,
+                y: Number(missile.getAttribute("y")) + 150,
+                isFired: false,
+                speedX: 0,
+                speedY: 0
+            })
+
+        })
+
+
+        document.addEventListener('keydown', theKeydown);
+        document.addEventListener('keyup', theKeyup);
+
+        function theKeydown(e) {
+            //console.log(e.key);
+            switch (e.key) {
+                case " ":
+                    fireAtWill = true;
+                    missileNum++;
+                    break;
+                case "ArrowLeft":
+                    theDirection = "L";
+                    break;
+                case "ArrowRight":
+                    theDirection = "R";
+                    break;
+            }
+        }
+
+        function theKeyup(e) {
+
+            switch (e.key) {
+                case " ":
+                    fireAtWill = false;
+                    break;
+                case "ArrowLeft":
+
+
+                case "ArrowRight":
+
+                    theDirection = "none";
+                    break;
+            }
+
+        }
+        // triangle.setAttribute("y","175");
+        // gunShip.element.setAttribute("transform", "translate(100,100)");
+
+        //  document.querySelector("#theCircle").addEventListener('animationiteration',animationIteration);
+        //   function animationIteration(e){console.log("ANIMATION EVENT",e)}
+        // document.querySelector("#theCircle").classList.add("enemy_animation");
+
+
+        let currentMissiles = [];
+        theGameLoop();
+        function theGameLoop() {
+            if (!stopFlag) {
+
+                if (fireAtWill) {
+                    missileArray[missileNum].speedX = 0;
+                    missileArray[missileNum].speedY = 1;
+
+                    missileArray[missileNum].isFired = true;
+
+                }
+
+               // console.log(document.querySelector("#theCircle").transform);
+                // console.log(document.querySelector("#theCircle").getAnimations());
+                //    console.log(document.querySelector("#theCircle"));
+                if (!enemy.hit){
+                    enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
+                }
+             
+                missileArray.forEach(theMissile => {
+
+                    if (!theMissile.isFired) {
+                        switch (theDirection) {
+                            case "L":
+                                theMissile.speedX = 1;
+                                break;
+                            case "R":
+                                theMissile.speedX = -1;
+                                break;
+                            case "none":
+                                theMissile.speedX = 0;
+                                break;
+                        }
+
+
+                    }
+                    //  console.log ("theMissile.y",theMissile.y);
+                    if (theMissile.y < -155) {
+                        theMissile.speedX = 0;
+                        theMissile.speedY = 0;
+                    } else {
+                        theMissile.element.setAttribute("transform", `translate(${theMissile.x -= theMissile.speedX},${theMissile.y -= theMissile.speedY})`);
+                    }
+                    if  (theMissile.isFired){
+                    console.log(theMissile.y);
+                    console.log();
+                    }
+                })
+                
+
+
+                
+            }
+           requestAnimationFrame(theGameLoop)
+        //    setTimeout(theGameLoop ,1000);
+            
+        }
+
+        fillGunShipWithMissiles();
+        // const allTheMissiles = document.querySelectorAll(".missile");
+
+        function fillGunShipWithMissiles() {
+
+
+        }
+
+
+    </script>
+</body>
+
+</html>
