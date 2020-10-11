@@ -26,7 +26,7 @@
 
         .enemy_animation {
             /* transform-box: fill-box; */
-            animation: enemy_kf 5s ease-in 5 forwards;
+            animation: enemy_kf 5s ease-in 1 forwards;
         }
 
         @keyframes enemy_kf {
@@ -278,6 +278,8 @@
         const theSVGWidth = 200;
         const theSVGHeight = 200;
         const theSvgPointer = document.querySelector("#theSvg");
+
+
         // const thisSvgOffsetX = theSvgPointer.getBoundingClientRect().x;
         // const thisSvgOffsetY = theSvgPointer.getBoundingClientRect().y;
 
@@ -376,12 +378,15 @@
                     missileArray[missileNum].isFired = true;
 
                 }
+                const SVGClientRect = theSvgPointer.getBoundingClientRect();
+                const enemyBoundingRect = enemy.element.getBoundingClientRect();
+                enemy.x = Math.round(((enemyBoundingRect.x + enemyBoundingRect.width / 2 - SVGClientRect.x) / ((SVGClientRect.width) / theSVGWidth)));
+                enemy.y = Math.round(((enemyBoundingRect.y + enemyBoundingRect.height / 2 - SVGClientRect.y) / ((SVGClientRect.height) / theSVGHeight)));
+                // console.log("BBbox",enemy.element.getBBox());
+                // console.log("ClientRect",enemy.element.getBoundingClientRect());
 
-                enemy.x = Math.round(((enemy.element.getBoundingClientRect().x + enemy.element.getBoundingClientRect().width / 2 - theSvgPointer.getBoundingClientRect().x) / ((theSvgPointer.getBoundingClientRect().width) / theSVGWidth)));
-                enemy.y = Math.round(((enemy.element.getBoundingClientRect().y + enemy.element.getBoundingClientRect().height / 2 - theSvgPointer.getBoundingClientRect().y) / ((theSvgPointer.getBoundingClientRect().height) / theSVGHeight)));
-
-
-
+                // console.log("Peter",enemy.element.getBoundingClientRect().width*(enemy.element.getBBox().width/enemy.element.getBoundingClientRect().width));
+                
                 console.log("enemyX", enemy.x);
                 console.log("enemyY", enemy.y);
 
