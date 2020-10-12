@@ -92,6 +92,9 @@
         const theSVGWidth = 200;
         const theSVGHeight = 200;
         const theSvgPointer = document.querySelector("#theSvg");
+        let widthNumber = 0;
+        let theXPlacement = 100;
+        let theYPlacement = 150;
 
         theSvgPointer.setAttribute("viewBox", `0 0 ${theSVGWidth} ${theSVGHeight}`);
 
@@ -112,10 +115,7 @@
 
 
         }
-        let widthNumber = 0;
 
-        let theXPlacement = 100;
-        let theYPlacement = 150;
 
 
 
@@ -204,8 +204,6 @@
                     if (missileNum < missileArray.length) {
                         missileArray[missileNum].speedX = 0;
                         missileArray[missileNum].speedY = 1;
-
-
                         missileArray[missileNum].isFired = true;
                        
                     }else{
