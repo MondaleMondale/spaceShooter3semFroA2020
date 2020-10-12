@@ -40,18 +40,19 @@
             }
         }
 
-        .enemy_hit_animation{
+        .enemy_hit_animation {
             animation: enemy_hit_kf 1s ease-in-out 1 forwards;
-            
-            
-            
+
+
+
         }
 
         @keyframes enemy_hit_kf {
-            to{
-                transform:scale(2);
+            to {
+                transform: scale(2);
             }
         }
+
         div {
             width: 20px;
             height: 20px;
@@ -70,7 +71,7 @@
         <!-- <g x="110" y="120"> -->
         <g id="theCircle">
             <circle r="20" stroke="white" fill="none" />
-            
+
         </g>
         <!-- </g> -->
         <g id="missiles">
@@ -78,7 +79,7 @@
                     <polygon id="missile_mother" points="0,0 -1.5,5 1.5,5" fill="none" stroke="white"
                         stroke-width=".2" />
                 </g> -->
-
+            <!--
             <g class="missile" x="0" y="0">
                 <polygon />
             </g>
@@ -254,12 +255,12 @@
             <g class="missile" x="13.5" y="45">
                 <polygon />
             </g>
-        </g>
-        <!-- </g> -->
+        </g>-->
+            <!-- </g> -->
 
 
 
-        <!-- <use href="#missile" width="10" height="20"/> -->
+            <!-- <use href="#missile" width="10" height="20"/> -->
 
 
 
@@ -302,29 +303,48 @@
 
 
         }
+        let widthNumber = 0;
+        
+        let theXPlacement = 100;
+        let theYPlacement = 150;
 
-        document.querySelectorAll(".missile").forEach((missile) => {
-            // console.log(missile);
-            missile.querySelector("polygon").setAttribute("points", "0,0 -1.5,5 1.5,5");
-            missile.setAttribute("stroke", "white");
-            missile.setAttribute("stroke-width", ".5");
-            missile.setAttribute("fill", "none");
-            // the positions in the SVG markup doesn't work but i use them and apply them - should be fixed
-           let tempX = Number(missile.getAttribute("x")) + 100;
-           let tempY = Number(missile.getAttribute("y")) + 150;
-            missile.setAttribute("transform", `translate(${tempX},${tempY})`);
-            // console.log("missile.getAttribute({\"x\")", missile.getAttribute("x"));
-            // missile.setAttribute("x","32px");
+
+
+        for (i = 0; i < 55; i++) {
+
+            // const theG = document.createElementNS('http://www.w3.org/2000/svg', "g")
+            const thePolygon = document.createElementNS('http://www.w3.org/2000/svg', "polygon")
+            thePolygon.setAttribute("points", "0,0 -1.5,5 1.5,5");
+            thePolygon.setAttribute("stroke", "white");;
+            thePolygon.setAttribute("stroke-width", ".5");
+            thePolygon.setAttribute("fill", "none");
+
+
+            document.querySelector("#missiles").appendChild(thePolygon);
+
+
+            if (i == 1 || i == 3 || i == 6 || i == 10 || i == 15 || i == 21 || i == 28 || i == 36 || i == 45 || i == 55) {
+                theYPlacement += 5;
+
+                widthNumber++;
+                theXPlacement = widthNumber * (-1.5) + 100;
+
+            }
+            theXPlacement += 3;
+            thePolygon.setAttribute("transform", `translate(${theXPlacement},${theYPlacement})`);
+
+
             missileArray.push({
-                element: missile,
-                x: tempX,
-                y: tempY,
+                element: thePolygon,
+                x: theXPlacement,
+                y: theYPlacement,
                 isFired: false,
                 speedX: 0,
                 speedY: 0
             })
 
-        })
+        }
+
 
 
         document.addEventListener('keydown', theKeydown);
@@ -386,7 +406,7 @@
                 // console.log("ClientRect",enemy.element.getBoundingClientRect());
 
                 // console.log("Peter",enemy.element.getBoundingClientRect().width*(enemy.element.getBBox().width/enemy.element.getBoundingClientRect().width));
-                
+
                 console.log("enemyX", enemy.x);
                 console.log("enemyY", enemy.y);
 
@@ -432,14 +452,14 @@
                             theMissile.speedX = 0;
                             theMissile.speedY = 0;
 
-                           let tempX = enemy.x;
-                           let tempY = enemy.y;
-                           enemy.element.classList.remove("enemy_animation");
-                           enemy.element.querySelector("circle").classList.add("enemy_hit_animation");
-                           enemy.element.x= tempX;
-                           enemy.element.y= tempY;
-                           enemy.element.setAttribute("transform",`translate(${enemy.element.x},${enemy.element.y})`) 
-                           
+                            let tempX = enemy.x;
+                            let tempY = enemy.y;
+                            enemy.element.classList.remove("enemy_animation");
+                            enemy.element.querySelector("circle").classList.add("enemy_hit_animation");
+                            enemy.element.x = tempX;
+                            enemy.element.y = tempY;
+                            enemy.element.setAttribute("transform", `translate(${enemy.element.x},${enemy.element.y})`)
+
                             // console.log("***************************")
                             // console.log("*          HIT            *")
                             // console.log("***************************")
