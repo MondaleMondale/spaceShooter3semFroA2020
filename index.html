@@ -217,9 +217,9 @@
                 const enemyBoundingRect = enemy.element.getBoundingClientRect();
                 enemy.x = Math.round(((enemyBoundingRect.x + enemyBoundingRect.width / 2 - SVGClientRect.x) / ((SVGClientRect.width) / theSVGWidth)));
                 enemy.y = Math.round(((enemyBoundingRect.y + enemyBoundingRect.height / 2 - SVGClientRect.y) / ((SVGClientRect.height) / theSVGHeight)));
+                
                 // console.log("BBbox",enemy.element.getBBox());
                 // console.log("ClientRect",enemy.element.getBoundingClientRect());
-
                 // console.log("Peter",enemy.element.getBoundingClientRect().width*(enemy.element.getBBox().width/enemy.element.getBoundingClientRect().width));
 
                 // console.log("enemyX", enemy.x);
@@ -227,8 +227,7 @@
 
 
                 if (!enemy.hit) {
-                    //    enemy.element.setAttribute("transform", `translate(${enemy.x -= enemy.speedX},${enemy.y -= enemy.speedY})`)
-                    // console.log(checkOutOfbounds(enemy));
+                 
                     if (checkOutOfbounds(enemy)) {
                         enemy.x = 0;
                         enemy.y = 0;
